@@ -38,8 +38,9 @@ services:
         reservations:
           cpus: '0.15'
           memory: 128M
-    labels:
-        support.services: "true"
+      placement:
+         constraints:
+           - node.labels.support.services == true
         
   influxdb:
     image: influxdb:1.7
@@ -55,9 +56,9 @@ services:
         reservations:
           cpus: '0.15'
           memory: 128M
-    labels:
-        support.services: "true"
-        
+      placement:
+         constraints:
+           - node.labels.support.services == true        
   agent:
     image: swarmpit/agent:latest
     environment:
